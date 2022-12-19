@@ -2,12 +2,32 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     form_container: {
-        minHeight: 600,
+        minHeight: 500,
         width: '100%',
         maxWidth: 380,
         backgroundColor: '#fff',
         borderRadius: 10,
         padding: 10
+    },
+    viewButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 10,
+        marginTop: 10
+    },
+    viewButtonFirstStep: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        padding: 10,
+        marginTop: 10
+    },
+    button: {
+        backgroundColor: '#9D39E4',
+        height: 60,
+        width: 60,
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });
 
