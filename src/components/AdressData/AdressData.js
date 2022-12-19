@@ -25,8 +25,8 @@ const AdressData = forwardRef(({ data, setData }, ref) => {
   }
 
   const checkEmptySpaces = (obj) => {
-    for (let value in obj)
-      if (value.trim() === '')
+    for (let key in obj)
+      if(obj[key].trim() === '')
         return true;
 
     return false;
@@ -77,7 +77,7 @@ const AdressData = forwardRef(({ data, setData }, ref) => {
             selectionColor='#CFAAF9'
             autoCapitalize='sentences'
             value={data.adress.district}
-            onChangeText={(text) => changeAdress(text, 'discrict')}
+            onChangeText={(text) => changeAdress(text, 'district')}
           />
         </View>
         <View style={styles.viewNumberLocal}>

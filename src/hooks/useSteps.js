@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const UseSteps = (steps) => {
-    const [ currentStep, setCurrentStep ] = useState(0);
+    const [ currentStep, setCurrentStep ] = useState(2);
 
     const changeStep = (i) => {
         if(i < 0 || i >= steps.length) return

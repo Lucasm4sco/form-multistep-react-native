@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     inputsContainer: {
@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
         padding: 8,
         marginBottom: 30,
         fontSize: 16
+    },
+    checkbox: {
+        bottom: 5,
     }
 });
 

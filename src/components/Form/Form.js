@@ -18,7 +18,7 @@ const formTemplate = {
     adress: {
         street: '',
         numberLocal: '',
-        discrict: '',
+        district: '',
         city: ''
     },
     phoneNumber: '',
