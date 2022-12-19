@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { View, Image, Text, TouchableHighlight } from "react-native";
+import { View, TouchableHighlight } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import { UseSteps } from "../../hooks/useSteps";
 import styles from "./style"
@@ -10,9 +10,20 @@ import AdressData from "../AdressData/AdressData";
 import PasswordData from "../PasswordData/PasswordData";
 
 const formTemplate = {
-    name: '',
+    name: {
+        firstName: '',
+        lastName: ''
+    },
     email: '',
-    adress_street: ''
+    adress: {
+        street: '',
+        numberLocal: '',
+        discrict: '',
+        city: ''
+    },
+    phoneNumber: '',
+    username: '',
+    password: ''
 }
 
 const Form = () => {

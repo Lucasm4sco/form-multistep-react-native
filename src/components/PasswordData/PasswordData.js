@@ -1,11 +1,25 @@
-import { View, Text } from "react-native"
+import { forwardRef, useImperativeHandle } from "react";
+import { View } from "react-native";
 
-const PasswordData = () => {
+const PasswordData = forwardRef(({ data, setData }, ref) => {
+
+  useImperativeHandle(ref, () => {
+    return {
+      validate: (changeStep, prevStep) => {
+
+      },
+      goBack: (changeStep, prevStep) => {
+        changeStep(prevStep);
+      }
+    }
+  });
+
   return (
     <View>
-        <Text>Password</Text>
+
     </View>
   )
-}
+
+});
 
 export default PasswordData;

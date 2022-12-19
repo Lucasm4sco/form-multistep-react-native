@@ -3,8 +3,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Entypo } from '@expo/vector-icons'; 
 import styles from "./style";
 
-const ComponentStep = ({children, isCurrentStep}) => {
-  return isCurrentStep ? (
+const ComponentStep = ({children, isActive}) => {
+  return isActive ? (
       <LinearGradient
         style={styles.viewGradient}
         colors={['#6816a2','#410979']}
@@ -22,7 +22,7 @@ const ComponentStep = ({children, isCurrentStep}) => {
 const Steps = ({isFirstStep, isLastStep}) => {
   return (
     <View style={styles.container_steps}>
-          <ComponentStep isCurrentStep={true} >
+          <ComponentStep isActive={true} >
             {isFirstStep? (
               <Text style={styles.step_text_active}>
                 1
@@ -33,18 +33,17 @@ const Steps = ({isFirstStep, isLastStep}) => {
             
           </ComponentStep>
           <View style={ !isFirstStep ? styles.line_step_active : styles.line_step}></View>
-          <ComponentStep isCurrentStep={!isFirstStep} >
+          <ComponentStep isActive={!isFirstStep} >
             {isLastStep? (
               <Entypo name="check" size={18} color="white" />
             ) : (
               <Text style={ !isFirstStep ? styles.step_text_active : styles.step_text }>
                 2
               </Text>
-            )}
-            
+            )}            
           </ComponentStep>
           <View style={ isLastStep ? styles.line_step_active : styles.line_step}></View>
-          <ComponentStep isCurrentStep={isLastStep} >
+          <ComponentStep isActive={isLastStep} >
             <Text style={ isLastStep ? styles.step_text_active : styles.step_text }>
               3
             </Text>

@@ -5,7 +5,8 @@ import styles from "./style";
 import imgAstronaut from "../../../assets/astronaut.jpg";
 
 const formErrors = {
-  errorName: false,
+  errorFirstName: false,
+  errorLastName: false,
   errorEmail: false
 }
 
@@ -17,10 +18,13 @@ const UserData = forwardRef(({ data, setData }, ref) => {
       validate: (changeStep, nextStep) => {
         const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm");
         const isValidEmail = emailRegex.test(data.email);
+        
+        const invalidName = data.name.firstName.trim() === '' || data.name.lastName.trim() === '';
 
-        if (data.name.trim() === '' || !isValidEmail) {
+        if (invalidName || !isValidEmail) {
           setErrors({
-            errorName: data.name.trim() === '',
+            errorFirstName: data.name.firstName.trim() === '',
+            errorLastName: data.name.lastName.trim() === '',
             errorEmail: !isValidEmail
           });
           return alert('Defina um Nome ou E-mail válido!');
@@ -31,14 +35,20 @@ const UserData = forwardRef(({ data, setData }, ref) => {
     }
   })
 
-  const changeName = (text) => {
+  const changeName = (text, key) => {
     const lastIndex = text[text.length - 1];
     const lastIndexIsNumber = !isNaN(Number(lastIndex));
 
     if (lastIndexIsNumber && lastIndex !== ' ')
       return
 
-    setData((prevData) => ({ ...prevData, 'name': text }));
+    setData((prevData) => ({ 
+      ...prevData, 
+      'name': {
+        ...prevData.name,
+        [key]: text
+      }
+    }));
   }
 
   return (
@@ -51,12 +61,21 @@ const UserData = forwardRef(({ data, setData }, ref) => {
       </View>
       <Text style={styles.labelInput}>Nome: </Text>
       <TextInput
-        style={errors.errorName ? styles.inputError : styles.input}
-        placeholder="Nome Completo"
+        style={errors.errorFirstName ? styles.inputError : styles.input}
+        placeholder="Primeiro nome"
         selectionColor='#CFAAF9'
         autoCapitalize='sentences'
-        value={data.name}
-        onChangeText={(text) => changeName(text)}
+        value={data.name.firstName}
+        onChangeText={(text) => changeName(text, 'firstName')}
+      />
+      <Text style={styles.labelInput}>Sobrenome: </Text>
+      <TextInput
+        style={errors.errorLastName ? styles.inputError : styles.input}
+        placeholder="Sobrenome"
+        selectionColor='#CFAAF9'
+        autoCapitalize='sentences'
+        value={data.name.lastName}
+        onChangeText={(text) => changeName(text, 'lastName')}
       />
       <Text style={styles.labelInput}>E-mail: </Text>
       <TextInput
