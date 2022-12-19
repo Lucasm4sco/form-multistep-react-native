@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     labelInput: {
         alignSelf: 'flex-start',
         paddingVertical: 10,
+        paddingLeft: 8,
         fontSize: 16,
         fontWeight: '600'
     },

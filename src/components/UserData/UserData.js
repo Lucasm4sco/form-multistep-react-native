@@ -54,9 +54,9 @@ const UserData = forwardRef(({ data, setData }, ref) => {
         style={errors.errorName ? styles.inputError : styles.input}
         placeholder="Nome Completo"
         selectionColor='#CFAAF9'
+        autoCapitalize='sentences'
         value={data.name}
         onChangeText={(text) => changeName(text)}
-        autoCapitalize='sentences'
       />
       <Text style={styles.labelInput}>E-mail: </Text>
       <TextInput

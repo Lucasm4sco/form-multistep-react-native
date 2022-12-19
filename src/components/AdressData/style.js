@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     labelInput: {
         alignSelf: 'flex-start',
         paddingVertical: 10,
+        paddingLeft: 8,
         fontSize: 16,
         fontWeight: '600'
     },
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 8,
         marginBottom: 30,
-        fontSize: 16
+        fontSize: 16,
     },
     inputError: {
         width: '100%',
@@ -36,6 +37,18 @@ const styles = StyleSheet.create({
         padding: 8,
         marginBottom: 30,
         fontSize: 16
+    },
+    viewRow: {
+        width: '100%',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    },
+    viewInputDistrict: {
+        width: '75%',
+        marginRight: 10
+    },
+    viewNumberLocal: {
+        width: '20%'
     }
 });
 
