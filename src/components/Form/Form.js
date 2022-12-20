@@ -1,13 +1,15 @@
 import { useState, useRef } from "react";
-import { View, TouchableHighlight } from "react-native";
-import { MaterialIcons } from '@expo/vector-icons';
+import { View } from "react-native";
 import { UseSteps } from "../../hooks/useSteps";
 import styles from "./style"
 
 import Steps from "../Steps/Steps";
+import StepButtons from "../StepButtons/StepButtons";
+import ButtonRestart from "../ButtonRestart/ButtonRestart";
 import UserData from "../UserData/UserData";
 import AdressData from "../AdressData/AdressData";
 import PasswordData from "../PasswordData/PasswordData";
+import ShippingForm from "../ShippingForm/ShippingForm";
 
 const formTemplate = {
     name: {
@@ -31,54 +33,36 @@ const Form = () => {
     const componenteRef = useRef();
 
     const formSteps = [
-        <UserData 
-            data={data} 
-            setData={setData} 
-            ref={componenteRef} 
-            />,
+        <UserData data={data} setData={setData} ref={componenteRef} />,
         <AdressData data={data} setData={setData} ref={componenteRef} />,
-        <PasswordData data={data} setData={setData} ref={componenteRef} />
+        <PasswordData data={data} setData={setData} ref={componenteRef} />,
+        <ShippingForm />
     ];
 
-    const { isFirstStep, isLastStep, changeStep, currentComponent , currentStep} = UseSteps(formSteps);
+    const { isFirstStep, isLastStep, changeStep, currentComponent, currentStep, isShipping } = UseSteps(formSteps);
 
     return (
         <View style={styles.form_container}>
             <Steps
                 isFirstStep={isFirstStep}
                 isLastStep={isLastStep}
+                isShipping={isShipping}
             />
-            
+
             {currentComponent}
-            {isFirstStep  ? (
-                <View style={styles.viewButtonFirstStep}>
-                    
-                    <TouchableHighlight
-                        style={styles.button}
-                        onPress={() => componenteRef.current.validate(changeStep, currentStep + 1)}
-                        underlayColor='#551583'
-                    >
-                        <MaterialIcons name="keyboard-arrow-right" size={38} color="white" />
-                    </TouchableHighlight>
-                </View>
-                
+            {isShipping ? (
+                <ButtonRestart 
+                    setData={setData}
+                    formTemplate={formTemplate}
+                    changeStep={changeStep}
+                />
             ) : (
-                <View style={styles.viewButtons}>
-                    <TouchableHighlight
-                        style={styles.button}
-                        onPress={() => componenteRef.current.goBack(changeStep, currentStep - 1)}
-                        underlayColor='#551583'
-                    >
-                        <MaterialIcons name="keyboard-arrow-left" size={38} color="white" />
-                    </TouchableHighlight>
-                    <TouchableHighlight
-                        style={styles.button}
-                        onPress={() => componenteRef.current.validate(changeStep, currentStep + 1)}
-                        underlayColor='#551583'
-                    >
-                        <MaterialIcons name="keyboard-arrow-right" size={38} color="white" />
-                    </TouchableHighlight>
-                </View>
+                <StepButtons
+                    isFirstStep={isFirstStep}
+                    changeStep={changeStep}
+                    componenteRef={componenteRef}
+                    currentStep={currentStep}
+                />
             )}
         </View>
     )

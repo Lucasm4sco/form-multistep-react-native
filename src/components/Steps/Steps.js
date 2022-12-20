@@ -19,7 +19,7 @@ const ComponentStep = ({children, isActive}) => {
     )
 }
    
-const Steps = ({isFirstStep, isLastStep}) => {
+const Steps = ({isFirstStep, isLastStep, isShipping}) => {
   return (
     <View style={styles.container_steps}>
           <ComponentStep isActive={true} >
@@ -34,7 +34,7 @@ const Steps = ({isFirstStep, isLastStep}) => {
           </ComponentStep>
           <View style={ !isFirstStep ? styles.line_step_active : styles.line_step}></View>
           <ComponentStep isActive={!isFirstStep} >
-            {isLastStep? (
+            {isLastStep || isShipping ? (
               <Entypo name="check" size={18} color="white" />
             ) : (
               <Text style={ !isFirstStep ? styles.step_text_active : styles.step_text }>
@@ -42,11 +42,15 @@ const Steps = ({isFirstStep, isLastStep}) => {
               </Text>
             )}            
           </ComponentStep>
-          <View style={ isLastStep ? styles.line_step_active : styles.line_step}></View>
-          <ComponentStep isActive={isLastStep} >
-            <Text style={ isLastStep ? styles.step_text_active : styles.step_text }>
-              3
-            </Text>
+          <View style={ isLastStep || isShipping ? styles.line_step_active : styles.line_step}></View>
+          <ComponentStep isActive={isLastStep || isShipping} >
+            {isShipping ? (
+              <Entypo name="check" size={18} color="white" />
+            ) : (
+              <Text style={ isLastStep ? styles.step_text_active : styles.step_text }>
+                3
+              </Text>
+            )}
           </ComponentStep>
     </View>
   )

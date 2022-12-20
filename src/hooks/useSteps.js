@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const UseSteps = (steps) => {
-    const [ currentStep, setCurrentStep ] = useState(2);
+    const [ currentStep, setCurrentStep ] = useState(0);
 
     const changeStep = (i) => {
         if(i < 0 || i >= steps.length) return
@@ -14,6 +14,7 @@ export const UseSteps = (steps) => {
         currentComponent: steps[currentStep],
         changeStep,
         isFirstStep: currentStep === 0,
-        isLastStep: (currentStep + 1) === steps.length
+        isLastStep: currentStep === 2,
+        isShipping: currentStep === 3
     }
 }
